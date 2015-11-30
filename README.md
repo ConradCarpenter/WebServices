@@ -1,9 +1,9 @@
-# WebSerices
+# WebServices
 # NewsFeed Application
 Netbeans JS/D3/Dojo/HTML/CSS with Tomcat JS/JAX-RS/JPA and MySQL DB AJAJ web 2.0 application template
 
 # Roles
-- MySQL =  Eric
+- MySQL =  Erik
 - JAX-RS = Ryan & Conrad
 - Client JS = Zack
 
