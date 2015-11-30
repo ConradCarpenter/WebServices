@@ -2,6 +2,14 @@
 # NewsFeed Application
 Netbeans JS/D3/Dojo/HTML/CSS with Tomcat JS/JAX-RS/JPA and MySQL DB AJAJ web 2.0 application template
 
+## Topics
+- Sports
+- Gadgets
+- Gaming
+- Music
+- Food
+
+
 # Roles
 - MySQL =  Erik
 - JAX-RS = Ryan & Conrad
