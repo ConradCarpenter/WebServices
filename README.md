@@ -17,6 +17,14 @@ Netbeans JS/D3/Dojo/HTML/CSS with Tomcat JS/JAX-RS/JPA and MySQL DB AJAJ web 2.0
 ## Tools
 - curl (get and post requests) to grab links from reddit
 
+## Login/Registration
+- Username + Password + Topic selection (Post Methods)
+  - Password Security (SSL or hash?)
+- After login/registration feed is populated 
+  - Ability to comment
+  - Update preferences 
+  - Change Password
+  
 # Roles
 - MySQL =  Erik
 - JAX-RS = Ryan & Zack
