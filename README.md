@@ -26,8 +26,8 @@ Netbeans JS/D3/Dojo/HTML/CSS with Tomcat JS/JAX-RS/JPA and MySQL DB AJAJ web 2.0
   - Change Password
   
 # Roles
-- MySQL =  Erik
-- JAX-RS = Ryan & Zack
+- MySQL =  Erik (shermanator138@gmail.com)
+- JAX-RS = Ryan & Zack (ahearn@hartford.edu zjones@hartford.edu)
 - Client JS = Conrad
 
 
