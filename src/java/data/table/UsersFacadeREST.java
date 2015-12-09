@@ -114,4 +114,15 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
         return em;
     }
     
+    private String removeStyle(String body) {
+        String[] s = body.split("(style=\".+\")|(style='.+')");
+        StringBuilder builder = new StringBuilder();
+        
+        for(int i = 0; i < s.length; ++i) {
+            builder.append(s[i]);
+        }
+        
+        return builder.toString();
+    }
+    
 }
