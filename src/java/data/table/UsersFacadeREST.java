@@ -47,6 +47,7 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
     public String start(String content){
         String uid, name;
         JsonReader reader;
+        int topics;
         try{
             //read the posted data
             reader = Json.createReader(new StringReader(content));
@@ -54,12 +55,14 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
             reader.close();
             uid = json.getString("uid");
             name = json.getString("name");
+            topics = json.getInt("topics");
             
         } catch(Exception e){
             uid = "chunk";
             name = "track";
+            topics = 0;
         }
-        create(new Users(uid,name));
+        create(new Users(uid,name, topics));
         Users u = super.find(uid);
         return u.toString();
     }

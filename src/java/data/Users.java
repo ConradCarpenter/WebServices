@@ -37,13 +37,22 @@ public class Users implements Serializable {
     private String uid;
     @Column(name = "name")
     private String name;
+    @Column(name = "topics")
+    private int topics;
+    
+    public static final int SPORTS = 0x01;
+    public static final int GADGETS = 0x02;
+    public static final int GAMING = 0x04;
+    public static final int MUSIC = 0x08;
+    public static final int FOOD = 0x10;
 
     public Users() {
     }
     
-    public Users(String uid, String name) {
+    public Users(String uid, String name, int topics) {
         this.uid = uid;
         this.name = name;
+        this.topics = topics;
     }
 
     public String getUid() {
@@ -60,6 +69,14 @@ public class Users implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+    
+    public int getTopics() {
+        return this.topics;
+    }
+    
+    public void setTopics(int topics) {
+        this.topics = topics;
     }
 
     @Override
