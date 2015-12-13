@@ -118,7 +118,7 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
     }
     
     private String removeStyle(String body) {
-        String[] s = body.split("(style=\".+\")|(style='.+')");
+        String[] s = body.split("style\\s*=\\s*((\".+\")|('.+'))");
         StringBuilder builder = new StringBuilder();
         
         for(int i = 0; i < s.length; ++i) {
