@@ -27,62 +27,46 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Users.findAll", query = "SELECT u FROM Users u"),
-    @NamedQuery(name = "Users.findByUid", query = "SELECT u FROM Users u WHERE u.uid = :uid"),
-    @NamedQuery(name = "Users.findByName", query = "SELECT u FROM Users u WHERE u.name = :name")})
+    @NamedQuery(name = "Users.findByUserID", query = "SELECT u FROM Users u WHERE u.userID = :userID"),
+    @NamedQuery(name = "Users.findByPassID", query = "SELECT u FROM Users u WHERE u.passID = :passID")})
 public class Users implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "uid")
-    private String uid;
-    @Column(name = "name")
-    private String name;
-    @Column(name = "topics")
-    private int topics;
-    
-    public static final int SPORTS = 0x01;
-    public static final int GADGETS = 0x02;
-    public static final int GAMING = 0x04;
-    public static final int MUSIC = 0x08;
-    public static final int FOOD = 0x10;
+    @Column(name = "userID")
+    private String userID;
+    @Column(name = "passID")
+    private String passID;
 
     public Users() {
     }
     
-    public Users(String uid, String name, int topics) {
-        this.uid = uid;
-        this.name = name;
-        this.topics = topics;
+    public Users(String userID, String name) {
+        this.userID = userID;
+        this.passID = passID;
+
     }
 
-    public String getUid() {
-        return uid;
+    public String getUserID() {
+        return userID;
     }
 
-    public void setUid(String uid) {
-        this.uid = uid;
+    public void setUserID(String userID) {
+        this.userID = userID;
     }
 
-    public String getName() {
-        return name;
+    public String getPass() {
+        return passID;
     }
 
     public void setName(String name) {
-        this.name = name;
-    }
-    
-    public int getTopics() {
-        return this.topics;
-    }
-    
-    public void setTopics(int topics) {
-        this.topics = topics;
+        this.passID = passID;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (uid != null ? uid.hashCode() : 0);
+        hash += (userID != null ? userID.hashCode() : 0);
         return hash;
     }
 
@@ -93,7 +77,7 @@ public class Users implements Serializable {
             return false;
         }
         Users other = (Users) object;
-        if ((this.uid == null && other.uid != null) || (this.uid != null && !this.uid.equals(other.uid))) {
+        if ((this.userID == null && other.userID != null) || (this.userID != null && !this.userID.equals(other.userID))) {
             return false;
         }
         return true;
@@ -102,16 +86,16 @@ public class Users implements Serializable {
     @Override
     public String toString() {
         JsonObjectBuilder builder = Json.createObjectBuilder();
-        builder.add("uid",uid);
-        builder.add("name",name);
+        builder.add("userID",userID);
+        builder.add("passID",passID);
         JsonObject json = builder.build();
         return json.toString();
     }
     
     public JsonObject toJSON(){
         JsonObjectBuilder builder = Json.createObjectBuilder();
-        builder.add("uid",uid);
-        builder.add("name",name);
+        builder.add("userID",userID);
+        builder.add("passID",passID);
         JsonObject json = builder.build();
         return json;
     }

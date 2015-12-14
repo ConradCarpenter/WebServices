@@ -45,25 +45,22 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
     @Consumes({"application/json"})
     @Produces({"application/json"})
     public String start(String content){
-        String uid, name;
+        String userID, passID;
         JsonReader reader;
-        int topics;
         try{
             //read the posted data
             reader = Json.createReader(new StringReader(content));
             JsonObject json = reader.readObject();
             reader.close();
-            uid = json.getString("uid");
-            name = json.getString("name");
-            topics = json.getInt("topics");
+            userID = json.getString("userID");
+            passID = json.getString("passID");
             
         } catch(Exception e){
-            uid = "chunk";
-            name = "track";
-            topics = 0;
+            userID = "chunk";
+            passID = "track";
         }
-        create(new Users(uid,name, topics));
-        Users u = super.find(uid);
+        create(new Users(userID,passID));
+        Users u = super.find(userID);
         return u.toString();
     }
     
@@ -72,27 +69,25 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
     @Consumes({"application/json"})
     @Produces({"application/json"})
     public String signup(String content){
-        String uid, name;
+        String userID, passID;
         JsonReader reader;
-        int topics;
         try{
             //read the posted data
             reader = Json.createReader(new StringReader(content));
             JsonObject json = reader.readObject();
             reader.close();
-            uid = json.getString("uid");
-            name = json.getString("name");
-            topics = json.getInt("topics");
+            userID = json.getString("userID");
+            passID = json.getString("passID");
             
         } catch(Exception e){
             return "{'signup':0}";
         }
         
-        Users u = super.find(uid);
+        Users u = super.find(userID);
         if (u != null)
             return "{'signup':0}";
         
-        create(new Users(uid,name, topics));
+        create(new Users(userID,passID));
         
         return "{'signup':1}";
     }
@@ -102,7 +97,7 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
     @Consumes({"application/json"})
     @Produces({"application/json"})
     public String login(String content){
-        String uid, name;
+        String userID, passID;
         JsonReader reader;
 
         try{
@@ -110,15 +105,15 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
             reader = Json.createReader(new StringReader(content));
             JsonObject json = reader.readObject();
             reader.close();
-            uid = json.getString("uid");
-            name = json.getString("name");
+            userID = json.getString("userID");
+            passID = json.getString("passID");
             
         } catch(Exception e){
             return "{'login':0}";
         }
         
-        Users u = find(uid);
-        if(u != null && u.getName().equals(Hasher.getSaltedHash(uid, name))) 
+        Users u = find(userID);
+        if(u != null && u.getPass().equals(Hasher.getSaltedHash(userID, passID))) 
             return "{'login':1}";
         
         return "{'login':0}";
