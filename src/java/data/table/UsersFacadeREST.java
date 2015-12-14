@@ -66,6 +66,33 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
         Users u = super.find(uid);
         return u.toString();
     }
+    
+    @POST
+    @Path("login")
+    @Consumes({"application/json"})
+    @Produces({"application/json"})
+    public String login(String content){
+        String uid, name;
+        JsonReader reader;
+
+        try{
+            //read the posted data
+            reader = Json.createReader(new StringReader(content));
+            JsonObject json = reader.readObject();
+            reader.close();
+            uid = json.getString("uid");
+            name = json.getString("name");
+            
+        } catch(Exception e){
+            return "{'login':0}";
+        }
+        
+        Users u = find(uid);
+        if(u.getName().equals(Hasher.getSaltedHash(uid, name))) 
+            return "{'login':1}";
+        
+        return "{'login':0}";
+    }
     @Override
     public void create(Users entity){
         super.create(entity);
