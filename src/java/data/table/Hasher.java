@@ -45,4 +45,8 @@ public class Hasher {
            throw new RuntimeException(ex);
         }
     }
+    
+    public static String getSaltedHash(String uid, String pwrd) {
+        return getHash(pwrd + getHash(uid));
+    }
 }
