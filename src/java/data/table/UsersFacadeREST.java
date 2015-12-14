@@ -68,6 +68,36 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
     }
     
     @POST
+    @Path("signup")
+    @Consumes({"application/json"})
+    @Produces({"application/json"})
+    public String signup(String content){
+        String uid, name;
+        JsonReader reader;
+        int topics;
+        try{
+            //read the posted data
+            reader = Json.createReader(new StringReader(content));
+            JsonObject json = reader.readObject();
+            reader.close();
+            uid = json.getString("uid");
+            name = json.getString("name");
+            topics = json.getInt("topics");
+            
+        } catch(Exception e){
+            return "{'signup':0}";
+        }
+        
+        Users u = super.find(uid);
+        if (u != null)
+            return "{'signup':0}";
+        
+        create(new Users(uid,name, topics));
+        
+        return "{'signup':1}";
+    }
+    
+    @POST
     @Path("login")
     @Consumes({"application/json"})
     @Produces({"application/json"})
@@ -88,11 +118,12 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
         }
         
         Users u = find(uid);
-        if(u.getName().equals(Hasher.getSaltedHash(uid, name))) 
+        if(u != null && u.getName().equals(Hasher.getSaltedHash(uid, name))) 
             return "{'login':1}";
         
         return "{'login':0}";
     }
+    
     @Override
     public void create(Users entity){
         super.create(entity);
