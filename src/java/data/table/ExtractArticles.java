@@ -33,7 +33,13 @@ import org.jsoup.nodes.Element;
  */
 public class ExtractArticles {
     
-    public String extract(String link){
+    public static String extract(String link){
+        
+        return removeStyle(toExtract(link));
+    }
+    
+    
+    private static String toExtract(String link){
         String article = "";
         try {
             Document doc = Jsoup.connect(link).get();
@@ -44,5 +50,16 @@ public class ExtractArticles {
             throw new RuntimeException(e);
         }
         return article;
+    }
+    
+     private static String removeStyle(String body) {
+        String[] s = body.split("style\\s*=\\s*((\".+\")|('.+'))");
+        StringBuilder builder = new StringBuilder();
+        
+        for(int i = 0; i < s.length; ++i) {
+            builder.append(s[i]);
+        }
+        
+        return builder.toString();
     }
 }
