@@ -175,4 +175,10 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
         return em;
     }
     
+    @POST
+    @Path("sports")
+    @Produces("text/plain")
+    public String returnSports() {
+        return ExtractArticles.extract(Topics.sports[0]);
+    }
 }
